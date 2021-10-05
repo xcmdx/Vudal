@@ -90,3 +90,9 @@ def menu():
 
 while menu():
     pass
+
+
+
+
+def sum_k():
+    
