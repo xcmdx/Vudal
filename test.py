@@ -4,3 +4,4 @@ mas = [[0 for _ in range(K)] for _ in range(N)]
 mas.append(string)
 
 print(mas)
+
