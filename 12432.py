@@ -160,19 +160,7 @@ def menu():
     elif var == 3:
         N = input('Количество строк:')
         K = input('Количество столбцов:')
-        N = input('Количество строк:')
-        K = input('Количество столбцов:')
         good_3(N, K)
-        string = input('Введите 1, чтобы вернуться в Меню: ')
-        while check(string) != 1:
-            string = input('Введите 1, чтобы вернуться в Меню: ')
-        return True
-    elif var == 4:
-        N = input('Количество строк:')
-        K = input('Количество столбцов:')
-        N = int(N)
-        K = int(K)
-        full(N, K)
         string = input('Введите 1, чтобы вернуться в Меню: ')
         while check(string) != 1:
             string = input('Введите 1, чтобы вернуться в Меню: ')
