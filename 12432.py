@@ -45,6 +45,15 @@ def good_3(N, K):
     sum_of_columns(a, b, c)
 
 
+def good_4(N, K):
+    try:
+        N = int(N)
+        K = int(K)
+    except ValueError:
+        print('\n', Error_2, '\n')
+        return True
+    full(N, K)
+
 def Vudal(N, K):  # таблица Вудала
     # N- кол-во строк, K - кол-во столбцов
     mas = [[0 for _ in range(K)] for _ in range(N)]

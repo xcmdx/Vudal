@@ -12,38 +12,14 @@ Error_1 = '!!! ВВЕДЕНА НЕСУЩЕСТВУЮЩАЯ КОМАНДА, ПО�
 Error_2 = '!!! НЕПРАВИЛЬНО ВВЕДЕНЫ ЧИСЛА, ПОВТОРИТЕ ПОПЫТКУ !!!'
 
 
-def good_1(N, K):
+def good(N, K):
     try:
         N = int(N)
         K = int(K)
     except ValueError:
         print('\n', Error_2, '\n')
-        return True
-    a, b, c = Vudal(N, K)
-    vtorostepennaya(a, b, c)
-
-
-def good_2(N, K):
-    try:
-        N = int(N)
-        K = int(K)
-    except ValueError:
-        print('\n', Error_2, '\n')
-        return True
-    a, b, c = Vudal(N, K)
-    sum_of_lines(a, b, c)
-
-
-def good_3(N, K):
-    try:
-        N = int(N)
-        K = int(K)
-    except ValueError:
-        print('\n', Error_2, '\n')
-        return True
-    a, b, c = Vudal(N, K)
-    sum_of_columns(a, b, c)
-
+        return True, True
+    return N, K
 
 def Vudal(N, K):  # таблица Вудала
     # N- кол-во строк, K - кол-во столбцов
@@ -123,6 +99,10 @@ def check(string):
             '\n')
     return string
 
+def command(string):
+    while check(string) != 1:
+        string = input('Введите 1, чтобы вернуться в Меню: ')
+    return True
     
 def menu():
     print(
@@ -144,39 +124,28 @@ def menu():
     if var == 1:
         N = input('Количество строк:')
         K = input('Количество столбцов:')
-        good_1(N, K)
+        N, K = good(N, K)
+        a, b, c = Vudal(N, K)
+        vtorostepennaya(a, b, c)
         string = input('Введите 1, чтобы вернуться в Меню: ')
-        while check(string) != 1:
-            string = input('Введите 1, чтобы вернуться в Меню: ')
-        return True
+        command(string)
+        
     elif var == 2:
         N = input('Количество строк:')
         K = input('Количество столбцов:')
-        good_2(N, K)
+        N, K = good(N, K)
+        a, b, c = Vudal(N, K)
+        sum_of_lines(a, b, c)
         string = input('Введите 1, чтобы вернуться в Меню: ')
-        while check(string) != 1:
-            string = input('Введите 1, чтобы вернуться в Меню: ')
-        return True
+        command(string)
     elif var == 3:
         N = input('Количество строк:')
         K = input('Количество столбцов:')
-        N = input('Количество строк:')
-        K = input('Количество столбцов:')
-        good_3(N, K)
+        N, K = good(N, K)
+        a, b, c = Vudal(N, K)
+        sum_of_columns(a, b, c)
         string = input('Введите 1, чтобы вернуться в Меню: ')
-        while check(string) != 1:
-            string = input('Введите 1, чтобы вернуться в Меню: ')
-        return True
-    elif var == 4:
-        N = input('Количество строк:')
-        K = input('Количество столбцов:')
-        N = int(N)
-        K = int(K)
-        full(N, K)
-        string = input('Введите 1, чтобы вернуться в Меню: ')
-        while check(string) != 1:
-            string = input('Введите 1, чтобы вернуться в Меню: ')
-        return True
+        command(string)
     elif var == 5:
         return False
     else:
@@ -185,7 +154,6 @@ def menu():
         Error_1,
         '\n')
         return True
-
 
 while menu():
     pass
