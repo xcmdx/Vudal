@@ -14,8 +14,6 @@ def Vudal(N, K):
     return mas, N, K 
 
 a, b, c = Vudal(3, 4)
-a = list(a)
-b, c = int(b), int(c)
 
 
 def sum_of_columns(mas, N, K):
