@@ -18,7 +18,10 @@ def good(var, N, K):
         K = int(K)
     except ValueError:
         print('\n', Error_2, '\n')
-        return True
+        return -1, -1
+    if N < 0 or K < 0:
+        print('\n', Error_2, '\n')
+        return -1, -1
     if var == 1:
         a, b, c = Vudal(N, K)
         vtorostepennaya(a, b, c)
@@ -28,11 +31,11 @@ def good(var, N, K):
         vtorostepennaya(a, b, c)
     elif var == 3:
         a, b, c = Vudal(N, K)
-        a ,b, c = sum_of_columns(a, b, c)
+        a, b, c = sum_of_columns(a, b, c)
         vtorostepennaya(a, b, c)
     elif var == 4:
         a, b, c = Vudal(N, K)
-        a ,b, c = sum_of_columns(a, b, c)
+        a, b, c = sum_of_columns(a, b, c)
         a, b, c = sum_of_lines(a, b, c)
         mas = a
         mas[b - 1][c - 1] = 0
@@ -41,7 +44,7 @@ def good(var, N, K):
     while check(string) != 1:
         print(Error_1)
         string = input('Введите 1, чтобы вернуться в Меню: ')
-    return False
+    return N, K
 
 
 def Vudal(N, K):  # таблица Вудала
@@ -98,54 +101,52 @@ def check(string):
 
 
 def menu():
-    print(
-        '\n' +
-        '*** МЕНЮ ***' +
-        '\n' +
-        TEXT_MESSAGE_1 +
-        '\n' +
-        TEXT_MESSAGE_2 +
-        '\n' +
-        TEXT_MESSAGE_3 +
-        '\n' +
-        TEXT_MESSAGE_4 +
-        '\n' +
-        TEXT_MESSAGE_5 +
-        '\n')
-    var = input()
-    var = check(var)
-    N = input()
-    K = input()
-    if var == 1:
-        good(var, N, K)
-        return True
-    elif var == 2:
-        good(var, N, K)
-        return True
-    elif var == 3:
-        good(var, N, K)
-        return True
-    elif var == 4:
-        good(var, N, K)
-        return True
-    elif var == 5:
-        return False
-    else:
-        print(
-            '\n',
-            Error_1,
-            '\n')
-        return True
+    start = 0
+    while (start != 2):
+        N = -1
+        K = -1
+        start = input(
+            'Введите 1, чтобы создать таблицу Вудала или 2, чтобы выйти из программы: ')
+        start = check(start)
+        while (start != 1) + (start != 2) - 1 > 0:
+            print(Error_1)
+            start = input(
+                'Введите 1, чтобы создать таблицу Вудала или 2, чтобы выйти из программы: ')
+            start = check(start)
+        if start == 1:
+            while (N == -1) and (K == -1):
+                N = input('Количество строк:')
+                K = input('Количество столбцов:')
+                N, K = good(1, N, K)
+        while True:
+            print(
+                '\n' +
+                '*** МЕНЮ ***' +
+                '\n' +
+                TEXT_MESSAGE_1 +
+                '\n' +
+                TEXT_MESSAGE_2 +
+                '\n' +
+                TEXT_MESSAGE_3 +
+                '\n' +
+                TEXT_MESSAGE_4 +
+                '\n' +
+                TEXT_MESSAGE_5 +
+                '\n')
+            var = input()
+            var = check(var)
+            if var == 1:
+                break
+            elif var == 2:
+                good(var, N, K)
+            elif var == 3:
+                good(var, N, K)
+            elif var == 4:
+                good(var, N, K)
+            elif var == 5:
+                return False
+            else:
+                print('\n', Error_1, '\n')
 
 
-start = input(
-    'Введите 1, чтобы создать таблицу Вудала или 2, чтобы выйти из программы: ')
-start = check(start)
-while (start != 1) + (start != 2) - 1 > 0:
-    print(Error_1)
-    start = input(
-        'Введите 1, чтобы создать таблицу Вудала или 2, чтобы выйти из программы: ')
-    start = check(start)
-if check(start) == 1:
-    while menu():
-        pass
+menu()
